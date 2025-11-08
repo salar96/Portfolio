@@ -124,7 +124,7 @@ style.textContent = `
     }
     
     .nav-link.active {
-        color: #007bff !important;
+        color: #00ff41 !important;
     }
     
     .nav-link.active::after {
@@ -134,7 +134,8 @@ style.textContent = `
         left: 0;
         width: 100%;
         height: 2px;
-        background-color: #007bff;
+        background-color: #00ff41;
+        box-shadow: 0 0 5px #00ff41;
     }
     
     .hamburger.active .bar:nth-child(2) {
@@ -210,4 +211,173 @@ if (aboutSection) {
     }, { threshold: 0.5 });
     
     statsObserver.observe(aboutSection);
+}
+
+// Matrix rain effect for hero section
+function createMatrixRain() {
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
+
+    const canvas = document.createElement('canvas');
+    canvas.style.position = 'absolute';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.pointerEvents = 'none';
+    canvas.style.opacity = '0.1';
+    canvas.style.zIndex = '0';
+    
+    hero.insertBefore(canvas, hero.firstChild);
+    
+    const ctx = canvas.getContext('2d');
+    canvas.width = hero.offsetWidth;
+    canvas.height = hero.offsetHeight;
+    
+    const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+    
+    function draw() {
+        ctx.fillStyle = 'rgba(13, 17, 23, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = '#00ff41';
+        ctx.font = fontSize + 'px monospace';
+        
+        for (let i = 0; i < drops.length; i++) {
+            const text = chars[Math.floor(Math.random() * chars.length)];
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+            
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                drops[i] = 0;
+            }
+            drops[i]++;
+        }
+    }
+    
+    setInterval(draw, 33);
+    
+    // Resize canvas on window resize
+    window.addEventListener('resize', () => {
+        canvas.width = hero.offsetWidth;
+        canvas.height = hero.offsetHeight;
+    });
+}
+
+// Initialize matrix effect
+createMatrixRain();
+
+// Projects Carousel
+const carouselTrack = document.getElementById('carouselTrack');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const indicatorsContainer = document.getElementById('carouselIndicators');
+
+if (carouselTrack && prevBtn && nextBtn) {
+    const slides = document.querySelectorAll('.project-slide');
+    let currentIndex = 0;
+    
+    // Create indicators
+    function createIndicators() {
+        indicatorsContainer.innerHTML = '';
+        
+        for (let i = 0; i < slides.length; i++) {
+            const indicator = document.createElement('div');
+            indicator.classList.add('indicator');
+            if (i === 0) indicator.classList.add('active');
+            indicator.addEventListener('click', () => goToSlide(i));
+            indicatorsContainer.appendChild(indicator);
+        }
+    }
+    
+    // Update carousel position and active state
+    function updateCarousel() {
+        if (slides.length === 0) return;
+        
+        const slideWidth = slides[0].offsetWidth;
+        const gap = 32; // 2rem gap
+        const moveDistance = slideWidth + gap;
+        const offset = -(currentIndex * moveDistance);
+        
+        carouselTrack.style.transform = `translateX(${offset}px)`;
+        
+        // Update active slide
+        slides.forEach((slide, index) => {
+            slide.classList.toggle('active', index === currentIndex);
+        });
+        
+        // Update indicators
+        const indicators = document.querySelectorAll('.indicator');
+        indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === currentIndex);
+        });
+    }
+    
+    // Go to specific slide
+    function goToSlide(index) {
+        const maxIndex = slides.length - 1;
+        currentIndex = Math.max(0, Math.min(index, maxIndex));
+        updateCarousel();
+    }
+    
+    // Previous button
+    prevBtn.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateCarousel();
+        }
+    });
+    
+    // Next button
+    nextBtn.addEventListener('click', () => {
+        const maxIndex = slides.length - 1;
+        if (currentIndex < maxIndex) {
+            currentIndex++;
+            updateCarousel();
+        }
+    });
+    
+    // Initialize
+    createIndicators();
+    updateCarousel();
+    
+    // Re-calculate on window resize with debounce
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(updateCarousel, 100);
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            prevBtn.click();
+        } else if (e.key === 'ArrowRight') {
+            nextBtn.click();
+        }
+    });
+    
+    // Touch/swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    carouselTrack.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    carouselTrack.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+    
+    function handleSwipe() {
+        if (touchEndX < touchStartX - 50) {
+            nextBtn.click();
+        }
+        if (touchEndX > touchStartX + 50) {
+            prevBtn.click();
+        }
+    }
 }

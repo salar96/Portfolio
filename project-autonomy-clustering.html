@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonomy-Aware Clustering - Salar Basiri</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .project-detail {
+            min-height: 100vh;
+            padding: 100px 0 50px;
+            background: #0d1117;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #00ff41;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+        }
+
+        .project-header {
+            margin-bottom: 3rem;
+        }
+
+        .project-header h1 {
+            color: #00ff41;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .meta-item {
+            color: #8b949e;
+        }
+
+        .meta-item strong {
+            color: #00ff41;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #161b22;
+            color: #00ff41;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid #30363d;
+        }
+
+        .project-image-main {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 3rem;
+            border: 2px solid #30363d;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.2);
+        }
+
+        .project-section {
+            background: #161b22;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border: 1px solid #30363d;
+        }
+
+        .project-section h2 {
+            color: #00ff41;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+        }
+
+        .project-section p {
+            color: #8b949e;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .project-section ul {
+            color: #8b949e;
+            line-height: 1.8;
+            padding-left: 1.5rem;
+        }
+
+        .project-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .gallery-image {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #30363d;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-image:hover {
+            border-color: #00ff41;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+            transform: scale(1.02);
+        }
+
+        .publication-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #00ff41;
+            color: #0d1117;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
+        }
+
+        .publication-link:hover {
+            background: #0d1117;
+            color: #00ff41;
+            border: 2px solid #00ff41;
+            box-shadow: 0 0 25px rgba(0, 255, 65, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Salar Basiri</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html#home" class="nav-link">Home</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#education" class="nav-link">Education</a>
+                <a href="index.html#skills" class="nav-link">Skills</a>
+                <a href="index.html#experience" class="nav-link">Experience</a>
+                <a href="index.html#projects" class="nav-link">Projects</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Project Detail -->
+    <section class="project-detail">
+        <div class="container">
+            <a href="index.html#projects" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Projects
+            </a>
+
+            <div class="project-header">
+                <h1>Autonomy-Aware Clustering: When Local Decisions Supersede Global Prescriptions</h1>
+                
+                <div class="project-meta">
+                    <div class="meta-item">
+                        <strong>Status:</strong> Under Review at ICLR 2026
+                    </div>
+                    <div class="meta-item">
+                        <strong>Role:</strong> Lead Researcher
+                    </div>
+                    <div class="meta-item">
+                        <strong>Year:</strong> 2024-2025
+                    </div>
+                </div>
+
+                <div class="project-tags">
+                    <span class="tag">Reinforcement Learning</span>
+                    <span class="tag">Clustering</span>
+                    <span class="tag">Optimization</span>
+                    <span class="tag">Stochastic Systems</span>
+                    <span class="tag">Machine Learning</span>
+                </div>
+            </div>
+
+            <img src="https://via.placeholder.com/1200x600/0d1117/00ff41?text=Autonomy-Aware+Clustering+Main+Image" alt="Project Main Image" class="project-image-main">
+
+            <div class="project-section">
+                <h2>Overview</h2>
+                <p>
+                    This project introduces a novel approach to clustering that accounts for local stochastic autonomy in complex systems. 
+                    Traditional clustering algorithms assume that agents will perfectly follow prescribed cluster assignments. However, 
+                    in real-world scenarios, agents often have their own autonomous decision-making processes that may deviate from global prescriptions.
+                </p>
+                <p>
+                    Our reinforcement learning-based framework learns to make clustering decisions that are robust to this autonomy, 
+                    achieving over 10× improvement compared to traditional autonomy-agnostic baselines.
+                </p>
+            </div>
+
+            <div class="project-section">
+                <h2>Key Features</h2>
+                <ul>
+                    <li><strong>Reinforcement Learning Framework:</strong> Novel RL approach that learns optimal clustering under local autonomy constraints</li>
+                    <li><strong>Stochastic Autonomy Modeling:</strong> Probabilistic model of agent behavior that captures deviation from prescribed actions</li>
+                    <li><strong>Scalable Algorithm:</strong> Efficient computation that scales to large numbers of agents and clusters</li>
+                    <li><strong>Performance Guarantees:</strong> Theoretical bounds on clustering quality under autonomy</li>
+                    <li><strong>Real-world Validation:</strong> Tested on multiple application domains including robotics and network systems</li>
+                </ul>
+            </div>
+
+            <div class="project-section">
+                <h2>Technical Approach</h2>
+                <p>
+                    The core innovation lies in formulating the clustering problem as a Markov Decision Process (MDP) where:
+                </p>
+                <ul>
+                    <li>States represent current cluster configurations and agent autonomy patterns</li>
+                    <li>Actions correspond to cluster assignment decisions</li>
+                    <li>Rewards are based on clustering quality metrics that account for autonomy-induced deviations</li>
+                    <li>Policy learning uses deep Q-networks with custom reward shaping</li>
+                </ul>
+                <p>
+                    The algorithm iteratively refines clustering decisions by observing how agents respond to assignments 
+                    and adapting the clustering strategy to minimize the impact of autonomous deviations.
+                </p>
+            </div>
+
+            <div class="project-section">
+                <h2>Results</h2>
+                <p>
+                    Experimental evaluation on benchmark datasets demonstrated:
+                </p>
+                <ul>
+                    <li>10× improvement in clustering quality compared to k-means and spectral clustering</li>
+                    <li>15× improvement over hierarchical clustering methods</li>
+                    <li>Robust performance across varying levels of agent autonomy</li>
+                    <li>Computational efficiency comparable to traditional methods</li>
+                    <li>Generalization to unseen autonomy patterns</li>
+                </ul>
+            </div>
+
+            <div class="project-section">
+                <h2>Gallery</h2>
+                <div class="image-gallery">
+                    <img src="https://via.placeholder.com/400x300/0d1117/00ff41?text=Results+Graph" alt="Results" class="gallery-image">
+                    <img src="https://via.placeholder.com/400x300/0d1117/00ff41?text=Architecture" alt="Architecture" class="gallery-image">
+                    <img src="https://via.placeholder.com/400x300/0d1117/00ff41?text=Comparison" alt="Comparison" class="gallery-image">
+                </div>
+            </div>
+
+            <div class="project-section">
+                <h2>Publication</h2>
+                <p>
+                    This work has been submitted to the International Conference on Learning Representations (ICLR) 2026 
+                    and is currently under review. The paper presents comprehensive theoretical analysis, algorithm design, 
+                    and experimental validation.
+                </p>
+                <a href="#" class="publication-link">
+                    <i class="fas fa-file-pdf"></i> View Paper (Coming Soon)
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Salar Basiri. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
